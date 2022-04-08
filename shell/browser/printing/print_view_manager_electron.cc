@@ -210,30 +210,22 @@ void PrintViewManagerElectron::UpdatePrintSettings(
 
 void PrintViewManagerElectron::SetupScriptedPrintPreview(
     SetupScriptedPrintPreviewCallback callback) {
-  // SetupScriptedPrintPreview() should never be called on
-  // PrintViewManagerElectron, since it is only triggered by Print Preview.
   mojo::ReportBadMessage(kInvalidSetupScriptedPrintPreviewCall);
 }
 
 void PrintViewManagerElectron::ShowScriptedPrintPreview(
     bool source_is_modifiable) {
-  // ShowScriptedPrintPreview() should never be called on
-  // PrintViewManagerElectron, since it is only triggered by Print Preview.
   mojo::ReportBadMessage(kInvalidShowScriptedPrintPreviewCall);
 }
 
 void PrintViewManagerElectron::RequestPrintPreview(
     printing::mojom::RequestPrintPreviewParamsPtr params) {
-  // RequestPrintPreview() should never be called on PrintViewManagerElectron,
-  // since it is only triggered by Print Preview.
   mojo::ReportBadMessage(kInvalidRequestPrintPreviewCall);
 }
 
 void PrintViewManagerElectron::CheckForCancel(int32_t preview_ui_id,
                                               int32_t request_id,
                                               CheckForCancelCallback callback) {
-  // CheckForCancel() should never be called on PrintViewManagerElectron, since
-  // it is only triggered by Print Preview.
   mojo::ReportBadMessage(kInvalidCheckForCancelCall);
 }
 #endif  // BUILDFLAG(ENABLE_PRINT_PREVIEW)
@@ -306,9 +298,9 @@ void PrintViewManagerElectron::ReleaseJob(PrintResult result) {
     if (printing_rfh_ && printing_rfh_->IsRenderFrameLive()) {
       GetPrintRenderFrame(printing_rfh_)->PrintingDone(result == PRINT_SUCCESS);
     }
-  }
 
-  Reset();
+    Reset();
+  }
 }
 
 WEB_CONTENTS_USER_DATA_KEY_IMPL(PrintViewManagerElectron);
